@@ -2,9 +2,10 @@
 
 import unittest
 
-from preprocess import *
+from preprocess import expand_cluttered_recipe, remove_number_and_unit, remove_anotation, make_ingredients_mapping
 
-from source import load_recipes
+from source import load_recipes, load_corrected_recipe_from_file
+from extract import extract_recipe_ingredient_list
 from dataview import get_raw_ingredients
 
 class ExpandClutteredRecipeTestCase(unittest.TestCase):

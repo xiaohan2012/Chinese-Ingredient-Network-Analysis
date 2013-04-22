@@ -78,40 +78,6 @@ def print_correction_dictionary(dictionary):
     for original, corrected in dictionary.items():
         print(original, corrected)
 
-def load_corrected_recipe_from_file(path="data/douguo.recipe"):
-    """
-    (str) => list of dict
-
-    load the recipe, correct the names and return the corrected recipe
-    """
-
-    from source import load_recipes
-    from dataview import get_raw_ingredients
-
-    #loading recipe
-    recipes = load_recipes(path)
-    
-    #get raw ingredients
-    ings = get_raw_ingredients(recipes)
-    
-    #make the name correction map
-    mapping = make_ingredients_mapping(ings)
-    
-    #correct the ingredient names according to the map
-    recipes = correct_ingredient_names(recipes, mapping)
-    
-    #return the corrected recipes
-    return recipes
-
-def extract_recipe_ingredient_list(recipes):
-    """
-    (list of recipe dict) => list of ingredient list
-    
-    given the recipes, return a nested list of ingredients
-    for example, [["土豆","萝卜"], ["番茄","鸡蛋"], ...]
-    """
-    return map(lambda r: r["ingredients"], recipes)
-
         
 def main():
     recipes = load_corrected_recipe_from_file()

@@ -2,7 +2,6 @@
 
 from __future__ import division
 import unittest 
-import numpy as np
 
 from graph import make_graph
 from prob import IngProbTable
@@ -43,7 +42,7 @@ class MakeGraphTestCase(unittest.TestCase):
         print mpl.rcParams["font.serif"]
         nx.draw(self.g)
         from matplotlib import pyplot as plt
-        plt.show()
+        #plt.show()
         
 
 if __name__ == "__main__":

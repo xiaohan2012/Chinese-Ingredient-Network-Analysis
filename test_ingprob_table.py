@@ -1,17 +1,17 @@
 # -!- encoding=utf8 -!-
 from __future__ import division
 import unittest 
-import numpy as np
 
+from recipe import  Ingredient
 from prob import IngProbTable
 
 
-potato = "土豆".decode("utf8")
-beef = "牛肉".decode("utf8")
-pepper = "辣椒".decode("utf8")
-tomato = "番茄".decode("utf8")
-egg = "鸡蛋".decode("utf8")
-hair = "头发".decode("utf8")
+potato = Ingredient("土豆")
+beef = Ingredient("牛肉")
+pepper = Ingredient("辣椒")
+tomato = Ingredient("番茄")
+egg = Ingredient("鸡蛋")
+hair = Ingredient("头发")
 
 
 class IngProbTableTestCase(unittest.TestCase):
