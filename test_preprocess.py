@@ -4,7 +4,7 @@ import unittest
 
 from preprocess import *
 
-from io import load_recipes
+from source import load_recipes
 from dataview import get_raw_ingredients
 
 class ExpandClutteredRecipeTestCase(unittest.TestCase):

@@ -1,3 +1,4 @@
+"""Data loading utility"""
 from simplejson import load
 
 def load_recipes(file="data/douguo.recipe"):

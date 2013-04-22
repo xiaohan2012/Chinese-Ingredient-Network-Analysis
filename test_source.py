@@ -2,7 +2,7 @@
 
 import unittest
 
-from io import load_recipes
+from source import load_recipes
 
 class LoadingRecipeTestCase(unittest.TestCase):
     """test case for load_recipes function"""

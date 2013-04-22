@@ -85,7 +85,7 @@ def load_corrected_recipe_from_file(path="data/douguo.recipe"):
     load the recipe, correct the names and return the corrected recipe
     """
 
-    from io import load_recipes
+    from source import load_recipes
     from dataview import get_raw_ingredients
 
     #loading recipe

@@ -1,6 +1,6 @@
 # -!- coding=utf8 -!-
 
-from io import load_recipes
+from source import load_recipes
 
 def get_raw_ingredients(recipes):
     """
