@@ -1,3 +1,4 @@
+
 #-!- coding=utf8 -!-
 
 """Data loading utility"""
@@ -6,24 +7,6 @@ from simplejson import load
 from recipe import Ingredient, IngredientPair
 from extract import extract_recipe_ingredient_list
 from prob import IngProbTable
-
-def load_recipes(file="data/douguo.recipe"):
-    """
-    str => dict
-    
-    load the recipe json file, and perform the following preprocessing:
-    1, filter out recipes without ingredients
-    2, perform necessary expansion on recipe ingredients
-
-    """
-    def has_ingredients(recipe):
-        """if the recipe has `ingredients` key"""
-        return "ingredients" in recipe.keys()
-    
-    from codecs import open
-    from preprocess import expand_cluttered_recipe
-    
-    return map(expand_cluttered_recipe, filter(has_ingredients, load(open(file, 'r', 'utf8'))))
 
 def load_corrected_recipe_from_file(path="data/douguo.recipe"):
     """
@@ -90,8 +73,9 @@ def load_ing_prob_table_from_file(recipe_path):
 
 
 def main():
-    for i in load_recipes():
-        print i
+    for i in load_ing_list():
+        for j in i:
+            print j
 
 def test():
     import doctest
@@ -99,5 +83,5 @@ def test():
 
 
 if __name__ == "__main__":
-#    main()
-    test()
+    main()
+    #test()

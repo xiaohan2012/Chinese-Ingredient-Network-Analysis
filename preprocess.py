@@ -1,23 +1,8 @@
 # -!- coding=utf8 -!-
 
 import re
+from source import load_corrected_recipe_from_file
 
-def expand_cluttered_recipe(recipe):
-    """
-    (dict) => dict
-    some recipe might have ingredients like 生姜3片 葱一小段 八角2枚 料酒2汤匙 生抽2汤匙 白糖1汤匙 豆豉1茶匙 盐1/2茶匙 油1汤匙
-    OR 酒、油、盐、胡椒粉、孜然粉、水淀粉
-
-    In this case, the ingredient should be expanded into smaller parts
-    """
-    new_d = dict(recipe)
-    ings = []
-    for ing in new_d["ingredients"]:
-        ings += re.split(u"[ \u3001]+", ing)
-
-    new_d["ingredients"] = ings
-    return new_d
-    
 
 def remove_number_and_unit(raw_str):
     """
@@ -33,7 +18,22 @@ def remove_anotation(raw_str):
     """
     return re.split("（".decode("utf8"),raw_str)[0]
 
-def make_ingredients_mapping(ingredients, funcs = [remove_anotation, remove_number_and_unit]):
+class LessLikelyWordRemover(object):
+    """remove the less likely parts of an ingredient string"""
+    def __init__(self):
+        from word_freq import WordFreqTable
+        self.tbl = WordFreqTable.from_cache()
+
+    def __call__(self, string):
+        """
+        (str) => str
+        cut the string, select the most probable part
+        """
+        import jieba
+        str_list = list(jieba.cut(string, cut_all = False))
+        return self.tbl.most_likely(str_list)
+
+def make_ingredients_mapping(ingredients, funcs = [LessLikelyWordRemover()]):
     """(list of str, list of (str=>str)) => dict of str -> str
    
     given the ingredient raw strings and mapping functions
@@ -52,9 +52,10 @@ def make_ingredients_mapping(ingredients, funcs = [remove_anotation, remove_numb
     mapping = {}
     
     for ing in ingredients:
-        new_ing = chained_func(ing) 
-        if ing != new_ing:#ensures the ingredient we recorded needs to be changed
-            mapping[ing] = new_ing
+        if ing.strip():#prevent empty string
+            new_ing = chained_func(ing) 
+            if ing != new_ing:#ensures the ingredient we recorded needs to be changed
+                mapping[ing] = new_ing
             
     return mapping
 
@@ -74,17 +75,22 @@ def correct_ingredient_names(recipes, correction_dict):
     #correct all recipes
     return map(correct_recipe, recipes)
 
-def print_correction_dictionary(dictionary):
+def inspect_correction_dictionary():
+    from source import load_recipes
+
+    dictionary = make_ingredients_mapping(load_recipes())
+    
     for original, corrected in dictionary.items():
         print(original, corrected)
-
         
 def main():
+    from extract import extract_recipe_ingredient_list
     recipes = load_corrected_recipe_from_file()
     ing_list = extract_recipe_ingredient_list(recipes)
     for i in ing_list:
         print ' '.join(i)
 
 if __name__ == "__main__":
-    main()
+    #main()
+    inspect_correction_dictionary()
 

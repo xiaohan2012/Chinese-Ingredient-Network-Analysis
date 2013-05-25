@@ -1,0 +1,16 @@
+application: ingredient-annotation-platform
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /hand/.*
+  script: hand_annotation.application
+
+- url: /bulk/.*
+  script: bulk_operation.application
+
+libraries:
+- name: jinja2
+  version: latest
