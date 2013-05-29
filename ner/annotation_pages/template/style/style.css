@@ -22,4 +22,9 @@ ul.selectable li{
 }
 
 .ui-selecting { background: #FECA40; }
-.ui-selected { background: #F39814; color: white; }}}
+.ui-selected { background: #F39814; color: white; }
+
+.annotated { background: #006600; }
+
+.del-btn { opacity: 0.5; background: #999; display: inline; padding: 5px; cursor: pointer; margin-top: 10px;}
+.del-btn:hover {opacity: 1; }

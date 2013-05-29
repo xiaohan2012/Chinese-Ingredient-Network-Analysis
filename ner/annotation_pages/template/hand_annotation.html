@@ -1,21 +1,31 @@
-<html>
-  <head>
-    <title>
-      Human Annotation Platform
-    </title>
-    <link rel="stylesheet" href="jquery-ui/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="style.css" />
+{%extends "base.html"%}
 
+{%block style %}
+    <link rel="stylesheet" href="jquery-ui/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="style/style.css" />
+{%endblock%}
+
+{%block js %}
     <script src="jquery-ui/jquery-1.9.1.js"></script>
     <script src="jquery-ui/ui/jquery-ui.js"></script>
-    <script src="script.js"></script>
-    <script src="data-partial.js"></script>
-  </head>
-  <body>
-    <h1>Let's annotate!</h1>
+    <script src="js/script.js"></script>
+{%endblock%}
+
+{%block content%}
     <div id="container">
       <ul>
+	{% for row in rows %}
+	<ul class="selectable word_sequence" key="{{row.key()}}">
+	  {% for word in row.content %}
+	  <li class="word ui-state-default">
+	    {{word}}
+	  </li>
+	  {% endfor %}
+	  <div class="del-btn" key="{{row.key()}}">X</div>
+	  <div class="clear"></div>
+	</ul>
+	{% endfor %}
       </ul>
     </div>
-  </body>
-</html>
+
+{%endblock%}

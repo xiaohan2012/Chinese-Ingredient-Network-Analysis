@@ -5,7 +5,7 @@ def cut(path):
     """(ingredient path: str) -> list of list of str"""
     for l in open(path, "r", "utf8"):
         words = jieba.cut(l, cut_all=False)
-        yield list(words)
+        yield list(words)[:-1]
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@ from google.appengine.ext import db
 
 class IngredientRawText(db.Model):
      content = db.StringListProperty(required = True)
-     ingredients = db.StringListProperty(default=[])
+     ingredients = db.ListProperty(int, default=[])
      annotated = db.BooleanProperty(default = False)
      last_modified = db.DateTimeProperty(auto_now = True)
      
