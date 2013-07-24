@@ -19,7 +19,7 @@ function delete_text(key) {
     })
 }
 $(document).ready(function(){
-
+    /*
     $(".selectable").selectable({
 	filter: "li" ,
 	cancel: ".del-btn",
@@ -45,6 +45,7 @@ $(document).ready(function(){
 	    
 	}
     });
+    */
 
     $(".del-btn").click(function(){
 	console.log("very der!");
