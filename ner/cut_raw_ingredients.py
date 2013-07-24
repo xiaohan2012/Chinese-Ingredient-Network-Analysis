@@ -14,5 +14,5 @@ if __name__ == '__main__':
         print u"  ".join(words).encode("utf8")
     """
     from simplejson import dump
-    words_list = list(cut("data/ingredients-1-3500.raw"))
-    dump(words_list, open("data/ingredients3500.json", "w", "utf8"))
+    words_list = list(cut("data/ingredients5000.raw"))
+    dump(words_list, open("data/ingredients5000.json", "w", "utf8"))
