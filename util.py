@@ -23,9 +23,6 @@ def create_custom_dict(freq = 10):
 def get_recipe_ingredients(recipe_path, user_dict_path = "data/user_dict.txt", ingredient_set = load_ingredients()):
     """
     get ingredients from recipe source file
-    >>> ri = get_recipe_ingredients("data/douguo.recipe")
-    >>> print " ".join(ri[0])
-    里脊 鸡蛋 鸡蛋清 淀粉 醋 白砂糖 番茄 番茄酱 胡椒 盐 味精 芝麻
     """
     from simplejson import load
     
@@ -44,10 +41,15 @@ def get_recipe_ingredients(recipe_path, user_dict_path = "data/user_dict.txt", i
         for recipe in recipes
     ]
         
-            
+
+    
 def main():
     #create_custom_dict()
-    get_recipe_ingredients("data/douguo.recipe")
+    """
+    ris = get_recipe_ingredients("data/douguo.recipe")
+    from simplejson import dump
+    dump(ris, open("data/recipe-ingredients.json", "w"))
+    """
 
 def test():
     import doctest
