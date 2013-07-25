@@ -6,7 +6,7 @@ def load_ingredients():
     >>> len(ings)
     2299
     """
-    file_names = ["bird.json", "meat.json", "vegetable.json", "cereal-bean-diary.json", "fruit.json", "dish.json", "aqua.json", "condiment.json", "ingredient-names2.json"]
+    file_names = ["bird.json", "meat.json", "vegetable.json", "cereal.json", "bean.json","diary.json", "noodle.json", "fruit.json", "dish.json", "aqua.json", "condiment.json"]
     
     from simplejson import load
     from codecs import open
@@ -40,21 +40,21 @@ def get_recipe_ingredients(recipe_path, user_dict_path = "data/user_dict.txt", i
         ]
         for recipe in recipes
     ]
-        
 
-    
+def ingredient_category():
+    file_names = ["bird.json", "meat.json", "vegetable.json", "cereal.json", "bean.json","diary.json", "noodle.json", "fruit.json", "dish.json", "aqua.json", "condiment.json"]
+
 def main():
     #create_custom_dict()
-    """
+
     ris = get_recipe_ingredients("data/douguo.recipe")
     from simplejson import dump
     dump(ris, open("data/recipe-ingredients.json", "w"))
-    """
 
 def test():
     import doctest
     doctest.testmod()
     
 if __name__ == '__main__':
-    #main()
-    test()
+    main()
+    #test()
