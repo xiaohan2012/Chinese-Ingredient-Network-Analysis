@@ -4,7 +4,7 @@ def load_ingredients():
     """
     >>> ings = load_ingredients()
     >>> len(ings)
-    2299
+    1392
     """
     file_names = ["bird.json", "meat.json", "vegetable.json", "cereal.json", "bean.json","diary.json", "noodle.json", "fruit.json", "dish.json", "aqua.json", "condiment.json"]
     
@@ -41,9 +41,25 @@ def get_recipe_ingredients(recipe_path, user_dict_path = "data/user_dict.txt", i
         for recipe in recipes
     ]
 
-def ingredient_category():
+def load_ingredient_category_mapping():
+    """
+    return the ingredient to category mapping
+
+    >>> m = ingredient_category_mapping()
+    >>> m["虾仁".decode("utf8")]
+    'aqua'
+    >>> m["绿豆芽".decode("utf8")]
+    'bean'
+    """
     file_names = ["bird.json", "meat.json", "vegetable.json", "cereal.json", "bean.json","diary.json", "noodle.json", "fruit.json", "dish.json", "aqua.json", "condiment.json"]
 
+    from simplejson import load
+    from codecs import open
+    
+    return dict( ( (ing, fname.split(".")[0])
+                   for fname in file_names
+                   for ing in load(open("data/"+fname, "r", "utf8"))) )
+    
 def main():
     #create_custom_dict()
 
@@ -56,5 +72,5 @@ def test():
     doctest.testmod()
     
 if __name__ == '__main__':
-    main()
-    #test()
+    #main()
+    test()
